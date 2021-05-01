@@ -325,13 +325,13 @@ def effnetv2_s(**kwargs):
     return EffNetV2(**kwargs)
 
 if __name__ =="__main__":
-    from torchsummary import summary
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # PyTorch v0.4.0
-    model = EffNetV2( ).to(device)
-    summary(model, input_size=(3, 480, 640))
+    # from torchsummary import summary
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # PyTorch v0.4.0
+    # model = EffNetV2( ).to(device)
+    # summary(model, input_size=(3, 480, 640))
 
     from torchstat import stat
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # PyTorch v0.4.0
     print(device)
     model = EffNetV2().to(device)
-    stat(model, (3, 480, 640), device='cuda')
+    stat(model, (3, 480, 640))

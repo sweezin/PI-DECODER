@@ -3,7 +3,7 @@
 ## Introduction
 <strong>PI-DECODER</strong>, a decoder structure designed for Precise Iris Segmentation and Location. The decoder structure is shown below:
 
-<img src="./reference/iris-decoder.png" alt="PI-DECODER">
+<img src="./reference/PI-decoder.png" alt="PI-DECODER">
 
 Please check <a href="./reference/technical paper.pdf">technical paper.pdf</a> in the "reference" subfolder for more details.
 
@@ -27,6 +27,7 @@ image count in train path :5
 image count in valid path :5
 image count in test path :40
 Using Model: PI-DECODER
+0.0688 seconds per image
 
 ----------------------------------------------------------------------------------------------------------------
 |evaluation     |e1(%)          |e2(%)          |miou(%)        |f1(%)          |miou_back      |f1_back        |

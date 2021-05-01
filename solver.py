@@ -100,15 +100,18 @@ class Solver(object):
 				os.makedirs(temp_path)
 			save_path.append(temp_path)
 
-
+		fps = 0.0
 		for i, (images,GT_annu, GT_iB,GT_pB,filename,width,length,nw,nh) in enumerate(self.test_loader):
 			
 			images = images.to(self.device)
 			GT_annu = GT_annu.to(self.device)
 			GT_iB = GT_iB.to(self.device)
 			GT_pB = GT_pB.to(self.device)
-
+			start_time = time.time()
 			f1,f2,f3 = self.net(images)
+			inference_time = time.time() - start_time
+			fps += inference_time
+
 			GT = [GT_annu, GT_iB, GT_pB]
 			nw,nh = nw.item(), nh.item()
 
@@ -144,8 +147,8 @@ class Solver(object):
 
 				fn=os.path.join(save_path[i], str(*filename)+'.png')
 				save_result.save(fn)
-
-
+		fps = fps / len(self.test_loader)
+		print("%.4f seconds per image."%(fps))
 		self.print_evaluation(e1=epoch_e1, e2=epoch_e2, miou=epoch_miou, f1=epoch_f1_score, miou_back=epoch_miou_back, f1_back=epoch_f1_score_back, num=len(self.test_loader))
 
 	'''
